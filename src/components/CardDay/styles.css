@@ -1,0 +1,14 @@
+.card_day{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #4D5E6F;
+    padding: 16px;
+    width: 120px;
+    border-radius: 16px;
+}
+
+.card_day_min_max{
+    font-size: 24px;
+    font-weight: 600;
+}
