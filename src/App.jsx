@@ -3,6 +3,7 @@ import WeatherCard from "./components/WeatherCard";
 import "./App.css";
 import { useEffect, useState } from "react";
 import { CardDay } from "./components/CardDay";
+import { Loading } from "./components/Loading";
 
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
@@ -24,13 +25,15 @@ function App() {
         console.error('Erro ao buscar API', erro)
       }
     }
-    fetchWeather()
-  }, [])
+
+   
+      fetchWeather()
+  }, [weather])
 
   return (
     <div className="app-container">
       <SearchBar />
-      {weather &&
+      {weather ?
         <>
           <h1>{weather.city}</h1>
           <WeatherCard weather={weather} />
@@ -43,7 +46,7 @@ function App() {
             ))}
           </div>
         </>
-      }
+       : <Loading/>}
     </div>
   );
 }
