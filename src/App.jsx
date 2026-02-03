@@ -10,29 +10,37 @@ const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 function App() {
 
   const [weather, setWeather] = useState(null);
+  const [search, setSearch] = useState('')
 
 
   useEffect(() => {
     async function fetchWeather() {
       try {
-        const res = await fetch(`https://api.hgbrasil.com/weather?format=json-cors&city_name=Osasco,SP&key=${API_KEY}`)
+       
+        const res = await fetch(`https://api.hgbrasil.com/weather?format=json-cors&city_name=${search}&key=${API_KEY}`)
         const data = await res.json();
+        
         if (data.results) {
           setWeather(data.results);
+          // setIsLoading(false)
         }
 
       } catch (erro) {
         console.error('Erro ao buscar API', erro)
       }
     }
-
-   
+    
       fetchWeather()
-  }, [weather])
+  }, [search])
 
+  function handleSubmit(formData) {
+    setSearch(formData.get('search'))
+  }
+
+ 
   return (
     <div className="app-container">
-      <SearchBar />
+      <SearchBar search={search} action={handleSubmit}  />
       {weather ?
         <>
           <h1>{weather.city}</h1>
