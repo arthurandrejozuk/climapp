@@ -10,3 +10,13 @@
         const weekDayFormatted = (firstLetter + weekday.slice(1)).split('-feira');
         return weekDayFormatted;
     }
+
+    export function formatTime(tempo){
+        if(tempo.includes("am")){
+            return tempo.split("am")
+        } else {
+            const horas = tempo.split(':')
+            const horarioBrasileiro = (parseInt(horas[0]) + 12 + `:${horas[1]}`).split('pm');
+            return horarioBrasileiro
+        }
+  }
