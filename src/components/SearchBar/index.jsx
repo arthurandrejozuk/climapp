@@ -1,13 +1,13 @@
 import "./styles.css";
 
-const SearchBar = ({ action }) => {
+const SearchBar = ({ action, onClick }) => {
 
 
   return (
     <form action={action} className="form-search">
       <label className="search-bar">
         <input type="text" placeholder="Digite a cidade" name="search" />
-        <button type="submit">
+        <button onClick={onClick} type="submit">
           <img src="./search.svg" alt="ícone de busca" />
         </button>
       </label>
